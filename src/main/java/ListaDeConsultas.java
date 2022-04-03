@@ -61,7 +61,7 @@ public class ListaDeConsultas {
         else if (atual.paciente != null && atual.proximo == null) {
             return 1;
         }
-        while (atual.proximo != null) {
+        while (atual != null) {
             tamanho += 1;
             atual = atual.proximo;
         }
@@ -75,16 +75,14 @@ public class ListaDeConsultas {
             return this.inicio;
         }
         else {
-            while (atual.proximo != null) {
+            while (atual != null) {
                 if (posicaoAtual == indice) {
-                    return atual;
+                    break;
                 }
-                else {
-                    atual = atual.proximo;
-                    posicaoAtual ++;
-                }
+                atual = atual.proximo;
+                posicaoAtual ++;
             }
         }
-        return null;
+        return atual;
     }
 }

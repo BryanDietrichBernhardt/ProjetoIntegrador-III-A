@@ -20,7 +20,7 @@ public class Main {
         boolean control = true;
         List<Medico> medicos = new ArrayList();
         List<Paciente> pacientes = new ArrayList();
-        List<Consulta> consultas = new ArrayList();
+        //List<Consulta> consultas = new ArrayList();
         ListaDeConsultas listaDeConsultas = new ListaDeConsultas();
         
         while (control){
@@ -52,9 +52,9 @@ public class Main {
                         int minutosConsulta = Integer.valueOf(JOptionPane.showInputDialog(null, "Minutos: ", "Cadastrar Consulta", 3));
                         DataConsulta dataConsulta = new DataConsulta(diaConsulta, mesConsulta, anoConsulta, horasConsulta, minutosConsulta);
                         Consulta consulta = new Consulta(identificadorConsulta, medicoEscolhido, pacienteEscolhido, dataConsulta);
-                        consultas.add(consulta);
+                        //consultas.add(consulta);
                         listaDeConsultas.incluirNoFim(consulta);
-                        listarConsultas(consultas);
+                        listarConsultas(listaDeConsultas);
                         
                         break;
                     default:
@@ -120,13 +120,21 @@ public class Main {
         return pacientes.get(option-1);
     }
     
-    public static void listarConsultas(List<Consulta> consultas) {
+    public static void listarConsultas(ListaDeConsultas consultas) {
         String listagemDeConsultas = "";
-        int contador = 0;
-        for (Consulta consulta : consultas){
-            contador ++;
-            listagemDeConsultas += contador + "- ID = " + consulta.identificadorDaConsulta + ", " + consulta.paciente.nome + ", " + consulta.paciente.cpf + ", " + consulta.medico.nome +"\n";
+        
+        for(int i=0; i < consultas.tamanho(); i++) {
+            Consulta consultaIndice = consultas.getConsulta(i);
+            listagemDeConsultas += consultaIndice.identificadorDaConsulta + "- " + consultaIndice.paciente.nome + ", " + consultaIndice.medico.nome + ", " + consultaIndice.dataConsulta.horas + ":" + consultaIndice.dataConsulta.minutos + " " + consultaIndice.dataConsulta.dia + "/" + consultaIndice.dataConsulta.mes + "/" + consultaIndice.dataConsulta.ano + "\n";
+            JOptionPane.showMessageDialog(null, consultas.tamanho());
         }
+        
+        
+        //int contador = 0;
+        //for (){
+        //    contador ++;
+        //    listagemDeConsultas += contador + "- ID = " + consulta.identificadorDaConsulta + ", " + consulta.paciente.nome + ", " + consulta.paciente.cpf + ", " + consulta.medico.nome +"\n";
+        //}
         JOptionPane.showMessageDialog(null, "Consultas: \n" + listagemDeConsultas);
     }
     
