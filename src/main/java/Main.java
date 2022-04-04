@@ -65,10 +65,10 @@ public class Main {
                         JOptionPane.showMessageDialog(null, "Pacientes: \n" + listarMedicos(medicos));
                         break;
                     case 7:
-                        consultasPorPaciente(listaDeConsultas);
+                        consultasPorPaciente(listaDeConsultas, pacientes);
                         break;
                     case 8:
-                        consultasPorMedico(listaDeConsultas);
+                        consultasPorMedico(listaDeConsultas, medicos);
                         break;
                     default:
                         JOptionPane.showMessageDialog(null, "Opção invalida!");
@@ -149,7 +149,7 @@ public class Main {
         return listagemDeConsultas;
     }
     
-    public static String consultasPorMedico(ListaDeConsultas consultas) {
+    public static String consultasPorMedico(ListaDeConsultas consultas, List<Medico> medicos) {
         String listagemDeConsultas = "";
         for(int i=0; i < consultas.tamanho(); i++) {
             Consulta consultaIndice = consultas.getConsulta(i);
