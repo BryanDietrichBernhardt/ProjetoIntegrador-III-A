@@ -65,10 +65,10 @@ public class Main {
                         JOptionPane.showMessageDialog(null, "Pacientes: \n" + listarMedicos(medicos));
                         break;
                     case 7:
-                        consultasPorPaciente(listaDeConsultas, pacientes);
+                        JOptionPane.showMessageDialog(null, "Consultas: \n" + consultasPorPaciente(listaDeConsultas, pacientes));
                         break;
                     case 8:
-                        consultasPorMedico(listaDeConsultas, medicos);
+                        JOptionPane.showMessageDialog(null, "Consultas: \n" + consultasPorMedico(listaDeConsultas, medicos));
                         break;
                     default:
                         JOptionPane.showMessageDialog(null, "Opção invalida!");
@@ -141,19 +141,24 @@ public class Main {
     public static String consultasPorPaciente(ListaDeConsultas consultas, List<Paciente> pacientes) {
         
         String listagemDeConsultas = "";
-        String especialidade = JOptionPane.showInputDialog(null, "Digite a especialidade: ", 3);
+        String paciente = JOptionPane.showInputDialog(null, "Digite o nome do paciente: ", 3);
         for(int i=0; i < consultas.tamanho(); i++) {
             Consulta consultaIndice = consultas.getConsulta(i);
-            listagemDeConsultas += consultaIndice.identificadorDaConsulta + "- " + consultaIndice.paciente.nome + ", " + consultaIndice.medico.nome + ", " + consultaIndice.dataConsulta.horas + ":" + consultaIndice.dataConsulta.minutos + " " + consultaIndice.dataConsulta.dia + "/" + consultaIndice.dataConsulta.mes + "/" + consultaIndice.dataConsulta.ano + "\n";
+            if (paciente == null ? consultaIndice.paciente.nome == null : paciente.equals(consultaIndice.paciente.nome)){
+                listagemDeConsultas += consultaIndice.identificadorDaConsulta + "- " + consultaIndice.paciente.nome + ", " + consultaIndice.medico.nome + ", " + consultaIndice.dataConsulta.horas + ":" + consultaIndice.dataConsulta.minutos + " " + consultaIndice.dataConsulta.dia + "/" + consultaIndice.dataConsulta.mes + "/" + consultaIndice.dataConsulta.ano + "\n";
+            }
         }
         return listagemDeConsultas;
     }
     
     public static String consultasPorMedico(ListaDeConsultas consultas, List<Medico> medicos) {
         String listagemDeConsultas = "";
+        String medico = JOptionPane.showInputDialog(null, "Digite o nome do médico: ", 3);
         for(int i=0; i < consultas.tamanho(); i++) {
             Consulta consultaIndice = consultas.getConsulta(i);
-            listagemDeConsultas += consultaIndice.identificadorDaConsulta + "- " + consultaIndice.paciente.nome + ", " + consultaIndice.medico.nome + ", " + consultaIndice.dataConsulta.horas + ":" + consultaIndice.dataConsulta.minutos + " " + consultaIndice.dataConsulta.dia + "/" + consultaIndice.dataConsulta.mes + "/" + consultaIndice.dataConsulta.ano + "\n";
+            if (medico == null ? consultaIndice.medico.nome == null : medico.equals(consultaIndice.medico.nome)){
+                listagemDeConsultas += consultaIndice.identificadorDaConsulta + "- " + consultaIndice.paciente.nome + ", " + consultaIndice.medico.nome + ", " + consultaIndice.dataConsulta.horas + ":" + consultaIndice.dataConsulta.minutos + " " + consultaIndice.dataConsulta.dia + "/" + consultaIndice.dataConsulta.mes + "/" + consultaIndice.dataConsulta.ano + "\n";
+            }
         }
         return listagemDeConsultas;
     }
