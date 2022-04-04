@@ -25,7 +25,7 @@ public class Main {
         
         while (control){
             try{
-                int option = Integer.valueOf(JOptionPane.showInputDialog(null, "1 - CADASTRAR MÉDICO\n2 - CADASTRAR FUNCIONÁRIO\n3 - CRIAR CONSULTA\n4 - LISTAR CONSULTAS\n5 - LISTAR PACIENTES\n6 - LISTAR MÉDICOS\n7 - CONSULTAS POR PACIENTE\n8 - CONSULTAS POR MEDICO\n0 - SAIR\n", "MENU", 3));
+                int option = Integer.valueOf(JOptionPane.showInputDialog(null, "1 - CADASTRAR MÉDICO\n2 - CADASTRAR PACIENTE\n3 - CRIAR CONSULTA\n4 - LISTAR CONSULTAS\n5 - LISTAR PACIENTES\n6 - LISTAR MÉDICOS\n7 - CONSULTAS POR PACIENTE\n8 - CONSULTAS POR MEDICO\n0 - SAIR\n", "MENU", 3));
                 switch(option) {
                     case 1:
                         String nomeMedico = JOptionPane.showInputDialog(null, "Nome: ", "Cadastrar Médico", 3);
