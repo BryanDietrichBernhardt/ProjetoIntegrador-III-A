@@ -25,7 +25,7 @@ public class Main {
         
         while (control){
             try{
-                int option = Integer.valueOf(JOptionPane.showInputDialog(null, "1 - CADASTRAR MÉDICO\n2 - CADASTRAR FUNCIONÁRIO\n3 - CRIAR CONSULTA\n0 - SAIR\n", "MENU", 3));
+                int option = Integer.valueOf(JOptionPane.showInputDialog(null, "1 - CADASTRAR MÉDICO\n2 - CADASTRAR FUNCIONÁRIO\n3 - CRIAR CONSULTA\n4 - LISTAR CONSULTAS\n5 - LISTAR PACIENTES\n6 - LISTAR MÉDICOS\n7 - CONSULTAS POR PACIENTE\n8 - CONSULTAS POR MEDICO\n0 - SAIR\n", "MENU", 3));
                 switch(option) {
                     case 1:
                         String nomeMedico = JOptionPane.showInputDialog(null, "Nome: ", "Cadastrar Médico", 3);
@@ -54,8 +54,21 @@ public class Main {
                         Consulta consulta = new Consulta(identificadorConsulta, medicoEscolhido, pacienteEscolhido, dataConsulta);
                         //consultas.add(consulta);
                         listaDeConsultas.incluirNoFim(consulta);
+                        break;
+                    case 4:
                         listarConsultas(listaDeConsultas);
-                        
+                        break;
+                    case 5:
+                        JOptionPane.showMessageDialog(null, "Pacientes: \n" + listarPacientes(pacientes));
+                        break;
+                    case 6:
+                        JOptionPane.showMessageDialog(null, "Pacientes: \n" + listarMedicos(medicos));
+                        break;
+                    case 7:
+                        consultasPorPaciente(listaDeConsultas);
+                        break;
+                    case 8:
+                        consultasPorMedico(listaDeConsultas);
                         break;
                     default:
                         JOptionPane.showMessageDialog(null, "Opção invalida!");
@@ -78,16 +91,10 @@ public class Main {
         Medico medicoEscolhido = new Medico("","","");
         
         while (true) {
-            String listagemDeMedicos = "";
-            String listagemDeEspecialidades = "";
-            int contador = 0;
-            for (Medico medico : medicos){
-                contador ++;
-                listagemDeEspecialidades += contador + "- " + medico.especialidade + "\n";
-            }
-            String especialidade = JOptionPane.showInputDialog(null, listagemDeEspecialidades, "Escolha a especialidade pelo nome: ", 3);
+            String especialidade = JOptionPane.showInputDialog(null, "Digite a especialidade: ", 3);
             
-            contador = 0;
+            String listagemDeMedicos = "";
+            int contador = 0;
             List<Medico> medicosEspecialidade = new ArrayList();
             for (Medico medico : medicos){
                 if (especialidade == null ? medico.especialidade == null : especialidade.equals(medico.especialidade)){
@@ -103,19 +110,14 @@ public class Main {
                 break;
             }
             else {
-               JOptionPane.showMessageDialog(null, "Sem médicos com essa especialidade - digite sair para cancelar!"); 
+               JOptionPane.showMessageDialog(null, "Sem médicos com essa especialidade!"); 
             }
         }
         return medicoEscolhido;
     }
     
     public static Paciente escolherPaciente(List<Paciente> pacientes) {
-        String listagemDePacientes = "";
-        int contador = 0;
-        for (Paciente paciente : pacientes){
-            contador ++;
-            listagemDePacientes += contador + "- " + paciente.nome + ", " + paciente.cpf + ", " + paciente.endereco + "\n";
-        }
+        String listagemDePacientes = listarPacientes(pacientes);
         int option = Integer.valueOf(JOptionPane.showInputDialog(null, listagemDePacientes, "Escolha o paciente pelo número", 3));
         return pacientes.get(option-1);
     }
@@ -126,10 +128,8 @@ public class Main {
         for(int i=0; i < consultas.tamanho(); i++) {
             Consulta consultaIndice = consultas.getConsulta(i);
             listagemDeConsultas += consultaIndice.identificadorDaConsulta + "- " + consultaIndice.paciente.nome + ", " + consultaIndice.medico.nome + ", " + consultaIndice.dataConsulta.horas + ":" + consultaIndice.dataConsulta.minutos + " " + consultaIndice.dataConsulta.dia + "/" + consultaIndice.dataConsulta.mes + "/" + consultaIndice.dataConsulta.ano + "\n";
-            JOptionPane.showMessageDialog(null, consultas.tamanho());
         }
-        
-        
+
         //int contador = 0;
         //for (){
         //    contador ++;
@@ -138,4 +138,43 @@ public class Main {
         JOptionPane.showMessageDialog(null, "Consultas: \n" + listagemDeConsultas);
     }
     
+    public static String consultasPorPaciente(ListaDeConsultas consultas, List<Paciente> pacientes) {
+        
+        String listagemDeConsultas = "";
+        String especialidade = JOptionPane.showInputDialog(null, "Digite a especialidade: ", 3);
+        for(int i=0; i < consultas.tamanho(); i++) {
+            Consulta consultaIndice = consultas.getConsulta(i);
+            listagemDeConsultas += consultaIndice.identificadorDaConsulta + "- " + consultaIndice.paciente.nome + ", " + consultaIndice.medico.nome + ", " + consultaIndice.dataConsulta.horas + ":" + consultaIndice.dataConsulta.minutos + " " + consultaIndice.dataConsulta.dia + "/" + consultaIndice.dataConsulta.mes + "/" + consultaIndice.dataConsulta.ano + "\n";
+        }
+        return listagemDeConsultas;
+    }
+    
+    public static String consultasPorMedico(ListaDeConsultas consultas) {
+        String listagemDeConsultas = "";
+        for(int i=0; i < consultas.tamanho(); i++) {
+            Consulta consultaIndice = consultas.getConsulta(i);
+            listagemDeConsultas += consultaIndice.identificadorDaConsulta + "- " + consultaIndice.paciente.nome + ", " + consultaIndice.medico.nome + ", " + consultaIndice.dataConsulta.horas + ":" + consultaIndice.dataConsulta.minutos + " " + consultaIndice.dataConsulta.dia + "/" + consultaIndice.dataConsulta.mes + "/" + consultaIndice.dataConsulta.ano + "\n";
+        }
+        return listagemDeConsultas;
+    }
+    
+    public static String listarMedicos(List<Medico> medicos) {
+        String listagemDeMedicos = "";
+        int contador = 0;
+        for (Medico medico : medicos){
+            contador ++;
+            listagemDeMedicos += contador + "- " + medico.nome + ", " + medico.especialidade + ", " + medico.cpf + "\n";
+        }
+        return listagemDeMedicos;
+    }
+    
+    public static String listarPacientes(List<Paciente> pacientes) {
+        String listagemDePacientes = "";
+        int contador = 0;
+        for (Paciente paciente : pacientes){
+            contador ++;
+            listagemDePacientes += contador + "- " + paciente.nome + ", " + paciente.cpf + ", " + paciente.endereco + "\n";
+        }
+        return listagemDePacientes;
+    }
 }

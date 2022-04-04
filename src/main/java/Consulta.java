@@ -51,7 +51,5 @@ public class Consulta {
 
     public void setDataConsulta(DataConsulta dataConsulta) {
         this.dataConsulta = dataConsulta;
-    }
-    
-    
+    }  
 }

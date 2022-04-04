@@ -21,6 +21,4 @@ public class DataConsulta {
         this.horas = horas;
         this.minutos = minutos;
     }
-    
-    
 }
