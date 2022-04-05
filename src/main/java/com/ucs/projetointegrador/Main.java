@@ -87,7 +87,6 @@ public class Main {
     }
     
     public static Medico escolherMedico(List<Medico> medicos) {
-        boolean control = true;
         Medico medicoEscolhido = new Medico("","","");
         
         while (true) {
