@@ -25,7 +25,7 @@ public class Main {
         
         while (control){
             try{
-                int option = Integer.valueOf(JOptionPane.showInputDialog(null, "1 - CADASTRAR MÉDICO\n2 - CADASTRAR PACIENTE\n3 - CRIAR CONSULTA\n4 - LISTAR CONSULTAS\n5 - LISTAR PACIENTES\n6 - LISTAR MÉDICOS\n7 - CONSULTAS POR PACIENTE\n8 - CONSULTAS POR MEDICO\n0 - SAIR\n", "MENU", 3));
+                int option = Integer.valueOf(JOptionPane.showInputDialog(null, "1 - CADASTRAR MÉDICO\n2 - CADASTRAR PACIENTE\n3 - CRIAR CONSULTA\n4 - LISTAR CONSULTAS\n5 - LISTAR PACIENTES\n6 - LISTAR MÉDICOS\n7 - CONSULTAS POR PACIENTE\n8 - CONSULTAS POR MEDICO\n9 - ORDENAR CONSULTAS\n0 - SAIR\n", "MENU", 3));
                 switch(option) {
                     case 1:
                         String nomeMedico = JOptionPane.showInputDialog(null, "Nome: ", "Cadastrar Médico", 3);
@@ -35,9 +35,9 @@ public class Main {
                         medicos.add(medico);
                         break;
                     case 2:
-                        String nomePaciente = JOptionPane.showInputDialog(null, "Nome: ", "Cadastrar Funcionário", 3);
-                        String cpfPaciente = JOptionPane.showInputDialog(null, "CPF: ", "Cadastrar Funcionário", 3);
-                        String enderecoPaciente = JOptionPane.showInputDialog(null, "Endereco: ", "Cadastrar Funcionário", 3);
+                        String nomePaciente = JOptionPane.showInputDialog(null, "Nome: ", "Cadastrar Paciente", 3);
+                        String cpfPaciente = JOptionPane.showInputDialog(null, "CPF: ", "Cadastrar Paciente", 3);
+                        String enderecoPaciente = JOptionPane.showInputDialog(null, "Endereco: ", "Cadastrar Paciente", 3);
                         Paciente paciente = new Paciente(enderecoPaciente, nomePaciente, cpfPaciente);
                         pacientes.add(paciente);
                         break;
@@ -70,6 +70,9 @@ public class Main {
                     case 8:
                         JOptionPane.showMessageDialog(null, "Consultas: \n" + consultasPorMedico(listaDeConsultas, medicos));
                         break;
+                    case 9:
+                        JOptionPane.showMessageDialog(null, listaDeConsultas.insertionSort());
+                        break;
                     default:
                         JOptionPane.showMessageDialog(null, "Opção invalida!");
                         break;
@@ -90,7 +93,7 @@ public class Main {
         Medico medicoEscolhido = new Medico("","","");
         
         while (true) {
-            String especialidade = JOptionPane.showInputDialog(null, "Digite a especialidade: ", 3);
+            String especialidade = JOptionPane.showInputDialog(null, "Digite a especialidade: ", "Especialidade", 3);
             
             String listagemDeMedicos = "";
             int contador = 0;

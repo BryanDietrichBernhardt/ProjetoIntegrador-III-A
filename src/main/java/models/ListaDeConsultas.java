@@ -85,4 +85,49 @@ public class ListaDeConsultas {
         }
         return atual;
     }
+    
+    public String insertionSort() {
+        Consulta vetor[] = new Consulta[this.tamanho()];
+        Consulta atual = this.inicio;
+        int posicaoAtual = 0;
+        if (this.inicio == null) {
+            System.out.println("Lista vazia!");
+        } else {
+            while (atual != null) {
+                vetor[posicaoAtual] = atual;
+                posicaoAtual += 1;
+                atual = atual.proximo;
+            }
+        }
+        
+        
+        int j;
+        Consulta key;
+        int i;
+        
+        for (j = 1; j < vetor.length; j++)
+        {
+            key = vetor[j];
+            for (i = j - 1; (i >= 0) && (vetor[i].dataConsulta.ano > key.dataConsulta.ano); i--)
+            {
+                vetor[i + 1] = vetor[i];
+            }
+            vetor[i + 1] = key;
+        }
+        
+        String listagemConsultas = "";
+        for(i = 0; i < vetor.length; i++) {
+            listagemConsultas += vetor[i].identificadorDaConsulta + "- " + vetor[i].paciente.nome + ", " + vetor[i].medico.nome + ", " + vetor[i].dataConsulta.horas + ":" + vetor[i].dataConsulta.minutos + " " + vetor[i].dataConsulta.dia + "/" + vetor[i].dataConsulta.mes + "/" + vetor[i].dataConsulta.ano + "\n";
+        }
+        return listagemConsultas;
+        
+//        for(j = 1; j < this.tamanho(); j++) {
+//            key = this.inicio.proximo;
+//            
+//            for(i = j - 1; (i >= 0) && (this.inicio.dataConsulta.ano > key.dataConsulta.ano); i--) {
+//                this.inicio.proximo = this.inicio;
+//            }
+//            this.inicio.proximo = key;
+//        }
+    }
 }
