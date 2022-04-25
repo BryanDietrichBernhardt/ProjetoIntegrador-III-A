@@ -115,19 +115,50 @@ public class ListaDeConsultas {
             vetor[i + 1] = key;
         }
         
+        for (j = 1; j < vetor.length; j++)
+        {
+            key = vetor[j];
+            for (i = j - 1; (i >= 0) && (vetor[i].dataConsulta.mes > key.dataConsulta.mes) && (vetor[i].dataConsulta.ano == key.dataConsulta.ano); i--)
+            {
+                vetor[i + 1] = vetor[i];
+            }
+            vetor[i + 1] = key;
+        }
+        
+        for (j = 1; j < vetor.length; j++)
+        {
+            key = vetor[j];
+            for (i = j - 1; (i >= 0) && (vetor[i].dataConsulta.dia > key.dataConsulta.dia) && (vetor[i].dataConsulta.ano == key.dataConsulta.ano) && (vetor[i].dataConsulta.mes == key.dataConsulta.mes); i--)
+            {
+                vetor[i + 1] = vetor[i];
+            }
+            vetor[i + 1] = key;
+        }
+        
+        for (j = 1; j < vetor.length; j++)
+        {
+            key = vetor[j];
+            for (i = j - 1; (i >= 0) && (vetor[i].dataConsulta.horas > key.dataConsulta.horas) && (vetor[i].dataConsulta.ano == key.dataConsulta.ano) && (vetor[i].dataConsulta.mes == key.dataConsulta.mes) && (vetor[i].dataConsulta.dia == key.dataConsulta.dia); i--)
+            {
+                vetor[i + 1] = vetor[i];
+            }
+            vetor[i + 1] = key;
+        }
+        
+        for (j = 1; j < vetor.length; j++)
+        {
+            key = vetor[j];
+            for (i = j - 1; (i >= 0) && (vetor[i].dataConsulta.minutos > key.dataConsulta.minutos) && (vetor[i].dataConsulta.ano == key.dataConsulta.ano) && (vetor[i].dataConsulta.mes == key.dataConsulta.mes) && (vetor[i].dataConsulta.dia == key.dataConsulta.dia) && (vetor[i].dataConsulta.horas == key.dataConsulta.horas); i--)
+            {
+                vetor[i + 1] = vetor[i];
+            }
+            vetor[i + 1] = key;
+        }
+        
         String listagemConsultas = "";
         for(i = 0; i < vetor.length; i++) {
             listagemConsultas += vetor[i].identificadorDaConsulta + "- " + vetor[i].paciente.nome + ", " + vetor[i].medico.nome + ", " + vetor[i].dataConsulta.horas + ":" + vetor[i].dataConsulta.minutos + " " + vetor[i].dataConsulta.dia + "/" + vetor[i].dataConsulta.mes + "/" + vetor[i].dataConsulta.ano + "\n";
         }
         return listagemConsultas;
-        
-//        for(j = 1; j < this.tamanho(); j++) {
-//            key = this.inicio.proximo;
-//            
-//            for(i = j - 1; (i >= 0) && (this.inicio.dataConsulta.ano > key.dataConsulta.ano); i--) {
-//                this.inicio.proximo = this.inicio;
-//            }
-//            this.inicio.proximo = key;
-//        }
     }
 }
