@@ -89,7 +89,7 @@ public class ListaDeConsultas {
                     posicaoAtual ++;
                 }
             }
-            if(atual == this.inicio) {
+            if(posicaoAtual != indice) {
                 throw new ExcecaoDeIndiceInexistente();
             }
             return atual;
