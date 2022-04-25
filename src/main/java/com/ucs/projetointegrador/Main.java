@@ -76,6 +76,10 @@ public class Main {
                     case 8:
                         JOptionPane.showMessageDialog(null, "Consultas: \n" + listaDeConsultas.consultasPorMedico(listaDeConsultas, medicos));
                         break;
+                    //Função criada apenas para visualizar a exceção de índice inexistente
+                    case 9:
+                        listaDeConsultas.getConsulta(Integer.valueOf(JOptionPane.showInputDialog(null, "Indice: ", "Insira o Índice", 3)));
+                        break;
                     default:
                         JOptionPane.showMessageDialog(null, "Opção invalida!");
                         break;

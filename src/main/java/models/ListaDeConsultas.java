@@ -1,6 +1,7 @@
 
 import java.util.List;
 import javax.swing.JOptionPane;
+import Exceptions.ExcecaoDeIndiceInexistente;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -72,20 +73,29 @@ public class ListaDeConsultas {
         return tamanho;
     }
     
-    public Consulta getConsulta(int indice){
+    public Consulta getConsulta(int indice) throws ExcecaoDeIndiceInexistente {
         Consulta atual = this.inicio;
         int posicaoAtual = 0;
-        if (posicaoAtual == indice) {
-            return this.inicio;
-        }
-        else {
-            while (atual != null) {
-                if (posicaoAtual == indice) {
-                    break;
-                }
-                atual = atual.proximo;
-                posicaoAtual ++;
+        try {
+            if (posicaoAtual == indice) {
+                return this.inicio;
             }
+            else {
+                while (atual != null) {
+                    if (posicaoAtual == indice) {
+                        break;
+                    }
+                    atual = atual.proximo;
+                    posicaoAtual ++;
+                }
+            }
+            if(atual == this.inicio) {
+                throw new ExcecaoDeIndiceInexistente();
+            }
+            return atual;
+        }
+        catch (ExcecaoDeIndiceInexistente e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
         return atual;
     }
