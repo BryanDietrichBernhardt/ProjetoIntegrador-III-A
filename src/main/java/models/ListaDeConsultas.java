@@ -1,3 +1,7 @@
+
+import java.util.List;
+import javax.swing.JOptionPane;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
@@ -86,7 +90,7 @@ public class ListaDeConsultas {
         return atual;
     }
     
-    public String insertionSort() {
+    public Consulta[] insertionSort() {
         Consulta vetor[] = new Consulta[this.tamanho()];
         Consulta atual = this.inicio;
         int posicaoAtual = 0;
@@ -155,10 +159,32 @@ public class ListaDeConsultas {
             vetor[i + 1] = key;
         }
         
-        String listagemConsultas = "";
-        for(i = 0; i < vetor.length; i++) {
-            listagemConsultas += vetor[i].identificadorDaConsulta + "- " + vetor[i].paciente.nome + ", " + vetor[i].medico.nome + ", " + vetor[i].dataConsulta.horas + ":" + vetor[i].dataConsulta.minutos + " " + vetor[i].dataConsulta.dia + "/" + vetor[i].dataConsulta.mes + "/" + vetor[i].dataConsulta.ano + "\n";
+        return vetor;
+    }
+    
+    public String consultasPorPaciente(ListaDeConsultas consultas, List<Paciente> pacientes) {
+        Consulta[] vetor = this.insertionSort();
+        String listagemDeConsultas = "";
+        String paciente = JOptionPane.showInputDialog(null, "Digite o nome do paciente: ", "Nome do paciente", 3);
+        for(int i=0; i < vetor.length; i++) {
+            Consulta consultaIndice = vetor[i];
+            if (paciente == null ? consultaIndice.paciente.nome == null : paciente.equals(consultaIndice.paciente.nome)){
+                listagemDeConsultas += consultaIndice.identificadorDaConsulta + "- " + consultaIndice.paciente.nome + ", " + consultaIndice.medico.nome + ", " + consultaIndice.dataConsulta.horas + ":" + consultaIndice.dataConsulta.minutos + " " + consultaIndice.dataConsulta.dia + "/" + consultaIndice.dataConsulta.mes + "/" + consultaIndice.dataConsulta.ano + "\n";
+            }
         }
-        return listagemConsultas;
+        return listagemDeConsultas;
+    }
+    
+    public String consultasPorMedico(ListaDeConsultas consultas, List<Medico> medicos) {
+        Consulta[] vetor = this.insertionSort();
+        String listagemDeConsultas = "";
+        String medico = JOptionPane.showInputDialog(null, "Digite o nome do médico: ", "Nome do médico", 3);
+        for(int i=0; i < vetor.length; i++) {
+            Consulta consultaIndice = vetor[i];
+            if (medico == null ? consultaIndice.medico.nome == null : medico.equals(consultaIndice.medico.nome)){
+                listagemDeConsultas += consultaIndice.identificadorDaConsulta + "- " + consultaIndice.paciente.nome + ", " + consultaIndice.medico.nome + ", " + consultaIndice.dataConsulta.horas + ":" + consultaIndice.dataConsulta.minutos + " " + consultaIndice.dataConsulta.dia + "/" + consultaIndice.dataConsulta.mes + "/" + consultaIndice.dataConsulta.ano + "\n";
+            }
+        }
+        return listagemDeConsultas;
     }
 }
