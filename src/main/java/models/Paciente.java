@@ -14,4 +14,9 @@ public class Paciente extends Pessoa {
         super(nome, cpf);
         this.endereco = endereco;
     }
+    
+    @Override
+    public String toString() {
+        return this.nome + ", " + this.cpf + ", " + this.endereco;
+    }
 }

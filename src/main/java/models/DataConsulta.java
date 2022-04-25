@@ -21,4 +21,9 @@ public class DataConsulta {
         this.horas = horas;
         this.minutos = minutos;
     }
+    
+    @Override
+    public String toString() {
+        return String.valueOf(this.dia) + "/" + String.valueOf(this.mes) + "/" + String.valueOf(this.ano) + " " + String.valueOf(this.horas) + ":" + String.valueOf(this.minutos);
+    }
 }

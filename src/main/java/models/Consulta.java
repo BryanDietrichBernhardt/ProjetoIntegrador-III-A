@@ -52,4 +52,12 @@ public class Consulta {
     public void setDataConsulta(DataConsulta dataConsulta) {
         this.dataConsulta = dataConsulta;
     }  
+    
+    @Override
+    public String toString() {
+        return "--- Consulta ID " + String.valueOf(this.identificadorDaConsulta) + " ---" + "\n" +
+                "Paciente: " + this.paciente.toString() + "\n" +
+                "Medico: " + this.medico.toString() + "\n" +
+                "Data: " + this.dataConsulta.toString() + "\n";
+    }
 }

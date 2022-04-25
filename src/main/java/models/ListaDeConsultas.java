@@ -164,12 +164,15 @@ public class ListaDeConsultas {
     
     public String consultasPorPaciente(ListaDeConsultas consultas, List<Paciente> pacientes) {
         Consulta[] vetor = this.insertionSort();
+        
+        ListaDeConsultas listaDeConsultas = new ListaDeConsultas();
+        
         String listagemDeConsultas = "";
         String paciente = JOptionPane.showInputDialog(null, "Digite o nome do paciente: ", "Nome do paciente", 3);
         for(int i=0; i < vetor.length; i++) {
             Consulta consultaIndice = vetor[i];
             if (paciente == null ? consultaIndice.paciente.nome == null : paciente.equals(consultaIndice.paciente.nome)){
-                listagemDeConsultas += consultaIndice.identificadorDaConsulta + "- " + consultaIndice.paciente.nome + ", " + consultaIndice.medico.nome + ", " + consultaIndice.dataConsulta.horas + ":" + consultaIndice.dataConsulta.minutos + " " + consultaIndice.dataConsulta.dia + "/" + consultaIndice.dataConsulta.mes + "/" + consultaIndice.dataConsulta.ano + "\n";
+                listagemDeConsultas += consultaIndice.toString() + "\n";
             }
         }
         return listagemDeConsultas;
@@ -182,7 +185,7 @@ public class ListaDeConsultas {
         for(int i=0; i < vetor.length; i++) {
             Consulta consultaIndice = vetor[i];
             if (medico == null ? consultaIndice.medico.nome == null : medico.equals(consultaIndice.medico.nome)){
-                listagemDeConsultas += consultaIndice.identificadorDaConsulta + "- " + consultaIndice.paciente.nome + ", " + consultaIndice.medico.nome + ", " + consultaIndice.dataConsulta.horas + ":" + consultaIndice.dataConsulta.minutos + " " + consultaIndice.dataConsulta.dia + "/" + consultaIndice.dataConsulta.mes + "/" + consultaIndice.dataConsulta.ano + "\n";
+                listagemDeConsultas += consultaIndice.toString() + "\n";
             }
         }
         return listagemDeConsultas;

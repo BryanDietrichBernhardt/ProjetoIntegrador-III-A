@@ -25,7 +25,7 @@ public class Main {
         
         while (control){
             try{
-                int option = Integer.valueOf(JOptionPane.showInputDialog(null, "1 - CADASTRAR MÉDICO\n2 - CADASTRAR PACIENTE\n3 - CRIAR CONSULTA\n4 - LISTAR CONSULTAS\n5 - LISTAR PACIENTES\n6 - LISTAR MÉDICOS\n7 - CONSULTAS POR PACIENTE\n8 - CONSULTAS POR MEDICO\n9 - ORDENAR CONSULTAS\n0 - SAIR\n", "MENU", 3));
+                int option = Integer.valueOf(JOptionPane.showInputDialog(null, "1 - CADASTRAR MÉDICO\n2 - CADASTRAR PACIENTE\n3 - CRIAR CONSULTA\n4 - LISTAR CONSULTAS\n5 - LISTAR PACIENTES\n6 - LISTAR MÉDICOS\n7 - CONSULTAS POR PACIENTE\n8 - CONSULTAS POR MEDICO\n0 - SAIR\n", "MENU", 3));
                 switch(option) {
                     case 1:
                         String nomeMedico = JOptionPane.showInputDialog(null, "Nome: ", "Cadastrar Médico", 3);
@@ -59,7 +59,8 @@ public class Main {
                         Consulta[] vetor = listaDeConsultas.insertionSort();
                         String listagemConsultas = "";
                         for(int i = 0; i < vetor.length; i++) {
-                            listagemConsultas += vetor[i].identificadorDaConsulta + "- " + vetor[i].paciente.nome + ", " + vetor[i].medico.nome + ", " + vetor[i].dataConsulta.horas + ":" + vetor[i].dataConsulta.minutos + " " + vetor[i].dataConsulta.dia + "/" + vetor[i].dataConsulta.mes + "/" + vetor[i].dataConsulta.ano + "\n";
+                            Consulta consultaIndice = vetor[i];
+                            listagemConsultas += consultaIndice.toString() + "\n";
                         }
                         JOptionPane.showMessageDialog(null, listagemConsultas);
                         break;
@@ -74,9 +75,6 @@ public class Main {
                         break;
                     case 8:
                         JOptionPane.showMessageDialog(null, "Consultas: \n" + listaDeConsultas.consultasPorMedico(listaDeConsultas, medicos));
-                        break;
-                    case 9:
-                        JOptionPane.showMessageDialog(null, listaDeConsultas.insertionSort());
                         break;
                     default:
                         JOptionPane.showMessageDialog(null, "Opção invalida!");
@@ -106,7 +104,7 @@ public class Main {
             for (Medico medico : medicos){
                 if (especialidade == null ? medico.especialidade == null : especialidade.equals(medico.especialidade)){
                     contador ++;
-                    listagemDeMedicos += contador + "- " + medico.nome + ", " + medico.especialidade + "\n";
+                    listagemDeMedicos += contador + "- " + medico.toString() + "\n";
                     medicosEspecialidade.add(medico);
                 }
             }
@@ -134,7 +132,7 @@ public class Main {
         int contador = 0;
         for (Medico medico : medicos){
             contador ++;
-            listagemDeMedicos += contador + "- " + medico.nome + ", " + medico.especialidade + ", " + medico.cpf + "\n";
+            listagemDeMedicos += contador + "- " + medico.toString() + "\n";
         }
         return listagemDeMedicos;
     }
@@ -144,7 +142,7 @@ public class Main {
         int contador = 0;
         for (Paciente paciente : pacientes){
             contador ++;
-            listagemDePacientes += contador + "- " + paciente.nome + ", " + paciente.cpf + ", " + paciente.endereco + "\n";
+            listagemDePacientes += contador + "- " + paciente.toString() + "\n";
         }
         return listagemDePacientes;
     }

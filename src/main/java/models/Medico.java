@@ -38,4 +38,9 @@ public class Medico extends Pessoa {
     public void setCpf(String cpf) {
         this.cpf = cpf;
     } 
+    
+    @Override
+    public String toString() {
+        return nome + ", " + cpf + ", " + especialidade;
+    }
 }
